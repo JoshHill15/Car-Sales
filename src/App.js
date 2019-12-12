@@ -5,31 +5,30 @@ import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 
-import { removeFeatures, BuyItems } from "./actions/carActions"
+import { remove, buy } from "./actions/carActions"
 import {initialState} from "./reducers/carReducer"
-
 const App = (props) => {
   // const state = initialState
   console.log("app props",props)
 
-  const removeFeature = item => {
-    // dispatch an action here to remove an item
+  // const removeFeature = item => {
+  //   // dispatch an action here to remove an item
+  //   remove(item)
+  // };
 
-  };
-
-  const buyItem = item => {
-    // dipsatch an action here to add an item
-
-  };
+  // const buyItem = item => {
+  //   // dipsatch an action here to add an item
+  //   buy(item)
+  // };
 
   return (
     <div className="boxes">
       <div className="box">
-        <Header car={props.car} />
-        <AddedFeatures car={props.car} />
+        <Header car={props.car} additionalPrice = {props.additionalPrice}/>
+        <AddedFeatures car={props.car} remove = {props.remove}/>
       </div>
       <div className="box">
-        <AdditionalFeatures additionalFeatures={props.additionalFeatures} />
+        <AdditionalFeatures additionalFeatures={props.additionalFeatures} buy = {props.buy}/>
         <Total car={props.car} additionalPrice={props.additionalPrice} />
       </div>
     </div>
@@ -47,4 +46,5 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {removeFeatures, BuyItems})(App);
+ export default connect(mapStateToProps, { remove, buy })(App);
+// export default App
